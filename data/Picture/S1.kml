@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1jSb0QImdByAABvu7nkAzW-Afp2gxduDu">
+	<name>贺兰山</name>
+	<gx:CascadingStyle kml:id="__managed_style_15EFEF78B63BE9AD57F1">
+		<Style>
+			<IconStyle>
+				<scale>1.5</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.5</scale>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>1.58239</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_2DD6EF959A3BE9AD57F1">
+		<Style>
+			<IconStyle>
+				<scale>1.8</scale>
+				<Icon>
+					<href>https://earth.google.com/earth/document/icon?color=1976d2&amp;id=2000&amp;scale=4</href>
+				</Icon>
+				<hotSpot x="64" y="128" xunits="pixels" yunits="insetPixels"/>
+			</IconStyle>
+			<LabelStyle>
+				<scale>1.5</scale>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>2.37359</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+				<displayMode>hide</displayMode>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_0F8EC710713BE9AD57F1">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_15EFEF78B63BE9AD57F1</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_2DD6EF959A3BE9AD57F1</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="5895B52930000001">
+		<name>Low elevation: 2010m</name>
+		<LookAt>
+			<longitude>105.918374</longitude>
+			<latitude>38.746685</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>802.2784424712091</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0F8EC710713BE9AD57F1</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>105.918374,38.746685,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="5895B52930000002">
+		<name>Mid elevation: 2334m</name>
+		<LookAt>
+			<longitude>105.912572</longitude>
+			<latitude>38.73591099999999</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>802.4111200404908</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0F8EC710713BE9AD57F1</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>105.912572,38.735911,0</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark id="5895B52930000003">
+		<name>High elevation: 2670m</name>
+		<LookAt>
+			<longitude>105.909091</longitude>
+			<latitude>38.72875000000001</latitude>
+			<altitude>0</altitude>
+			<heading>0</heading>
+			<tilt>0</tilt>
+			<gx:fovy>35</gx:fovy>
+			<range>802.4992896736895</range>
+			<altitudeMode>relativeToGround</altitudeMode>
+		</LookAt>
+		<styleUrl>#__managed_style_0F8EC710713BE9AD57F1</styleUrl>
+		<Point>
+			<extrude>1</extrude>
+			<coordinates>105.909091,38.72875,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

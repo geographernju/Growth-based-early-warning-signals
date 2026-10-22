@@ -24,7 +24,7 @@ twd_dir=r"D:/data/Processed data/TWD/standardized"
 out_png=r"D:/results/Fig. 6.png"
 os.makedirs(os.path.dirname(out_png),exist_ok=True)
 colors={"growth":"#7B3294","twd":"#8C510A"}
-ref_values=[(45,55),(170,190),(25,35),(190,220)]
+ref_values=[(45,55),(170,190),(25,35),(200,220)]
 legend_settings=[("lower center",(0.52,0.04)),("upper left",(0.09,0.88)),("upper center",(0.52,0.87)),("lower right",(0.98,0.04))]
 def read_biweight(path):
     df=pd.read_csv(path)

@@ -20,7 +20,7 @@ os.makedirs(out_dir, exist_ok=True)
 method = "Spline"
 vars_keep = ["SPEI1", "SPEI6", "SPEI12", "swvl1", "swvl3", "stl1", "stl3"]
 months_all = list(range(1, 13))
-months_mean = [5, 6, 7]
+months_mean = [5, 6, 7, 8]
 
 dfc = pd.read_csv(clim_csv)
 pattern = re.compile(r"^(.*)_month_(\d+)$")

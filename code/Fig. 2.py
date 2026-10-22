@@ -89,10 +89,9 @@ def centered_annual_std(annual):
     dead_std=annual[dead_name].rolling(window=window,min_periods=min_periods,center=True).std()
     common=live_std.notna()&dead_std.notna()
     return live_std.where(common),dead_std.where(common)
-def ratio_after_year(years,dead_std,live_std,year0):
+def mean_dead_live_ratio(dead_std,live_std):
     ratio=(dead_std/live_std).replace([np.inf,-np.inf],np.nan)
-    mask=(years>year0)&dead_std.notna()&live_std.notna()
-    return ratio[mask].mean()
+    return ratio.mean()
 def corr_text(df):
     tmp=df[["live","dead"]].dropna()
     if len(tmp)>=3:
@@ -122,12 +121,15 @@ if extra_dead_trw_file is not None and os.path.exists(extra_dead_trw_file):
 live_mean=df_trw[live_cols].mean(axis=1,skipna=True)
 dead_mean=df_trw[dead_cols].mean(axis=1,skipna=True)
 compare_df=pd.DataFrame({"live":live_mean,"dead":dead_mean}).dropna()
-before_mask=compare_df.index<=break_year
+compare_df=compare_df.loc[compare_df.index>=plot_start_year]
+before_mask=compare_df.index<break_year
 after_mask=compare_df.index>break_year
 live_before=compare_df.loc[before_mask,"live"].mean()
 dead_before=compare_df.loc[before_mask,"dead"].mean()
 live_after=compare_df.loc[after_mask,"live"].mean()
 dead_after=compare_df.loc[after_mask,"dead"].mean()
+print(f"Before {break_year}: Live={live_before:.2f} um, Dead={dead_before:.2f} um, Dead/Live={dead_before/live_before*100:.1f}%")
+print(f"After {break_year}: Live={live_after:.2f} um, Dead={dead_after:.2f} um, Dead/Live={dead_after/live_after*100:.1f}%")
 rw_live_df=pd.read_csv(rw_live_file)[["year",method]].copy()
 rw_dead_df=pd.read_csv(rw_dead_file)[["year",method]].copy()
 bi_live_df=pd.read_csv(bi_live_file)[["year",method]].copy()
@@ -145,10 +147,10 @@ rw_plot=pd.DataFrame({"year":rw_annual.index.to_numpy(),"live":rw_annual[f"{meth
 bi_plot=pd.DataFrame({"year":bi_annual.index.to_numpy(),"live":bi_annual[f"{method}_live"].to_numpy(),"dead":bi_annual[f"{method}_dead"].to_numpy(),"live_std":bi_live_std.to_numpy(),"dead_std":bi_dead_std.to_numpy()})
 text_rw=corr_text(rw_plot)
 text_bi=corr_text(bi_plot)
-ratio_D=ratio_after_year(rw_plot["year"],rw_plot["dead_std"],rw_plot["live_std"],break_year)
-ratio_E=ratio_after_year(bi_plot["year"],bi_plot["dead_std"],bi_plot["live_std"],break_year)
-ratio_D_text=f"After {break_year}: Dead/Live = NA" if pd.isna(ratio_D) else f"After {break_year}: Dead/Live = {ratio_D:.1f}"
-ratio_E_text=f"After {break_year}: Dead/Live = NA" if pd.isna(ratio_E) else f"After {break_year}: Dead/Live = {ratio_E:.1f}"
+ratio_D=mean_dead_live_ratio(rw_plot["dead_std"],rw_plot["live_std"])
+ratio_E=mean_dead_live_ratio(bi_plot["dead_std"],bi_plot["live_std"])
+ratio_D_text="Dead/Live = NA" if pd.isna(ratio_D) else f"Dead/Live = {ratio_D:.1f}"
+ratio_E_text="Dead/Live = NA" if pd.isna(ratio_E) else f"Dead/Live = {ratio_E:.1f}"
 fig=plt.figure(figsize=(18,17.5))
 gs=GridSpec(3,2,figure=fig,height_ratios=[1.32,1,1],hspace=0.22,wspace=0.17)
 axA=fig.add_subplot(gs[0,:])
@@ -168,7 +170,7 @@ axA.axvline(break_year,color=break_color,linestyle="--",linewidth=2.4,zorder=25)
 ymin,ymax=axA.get_ylim()
 yr=ymax-ymin
 axA.text(break_year,ymin+yr*0.03,f"{break_year}",color=break_color,fontsize=22,ha="center",va="bottom",zorder=26)
-table_data=[[f"Through {break_year}",f"{live_before:.0f}",f"{dead_before:.0f}"],[f"After {break_year}",f"{live_after:.0f}",f"{dead_after:.0f}"]]
+table_data=[[f"Before {break_year}",f"{live_before:.0f}",f"{dead_before:.0f}"],[f"After {break_year}",f"{live_after:.0f}",f"{dead_after:.0f}"]]
 table=axA.table(cellText=table_data,colLabels=["Period","Live (µm)","Dead (µm)"],cellLoc="center",loc="upper right",bbox=[0.61,0.69,0.38,0.28],colWidths=[0.42,0.29,0.29])
 table.auto_set_font_size(False)
 table.set_fontsize(21)
